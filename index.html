@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IXZIR GYM WEAR | Hardcore Performance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Temel Ayarlar */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            color: #fff;
+            background-color: #0b0b0b;
+            scroll-behavior: smooth;
+        }
+
+        /* Üst Header Bölümü (Logo ve Menü) */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 15px 40px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            display: flex;
+            justify-content: flex-end;
+            /* İçeriği sağa yaslar */
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 3px solid #ff0000;
+            box-sizing: border-box;
+        }
+
+        /* Menü Linkleri (Logonun Solunda Kalacak) */
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            margin-right: 40px;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff0000;
+        }
+
+        /* Sağ Üst Köşe: Logo ve Sosyal Medya Grubu */
+        .logo-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .main-logo {
+            font-family: 'Arial Black', 'Impact', sans-serif;
+            /* Sert ve agresif durması için */
+            font-size: 2.5rem;
+            line-height: 1;
+            color: #ff0000;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            font-style: italic;
+            text-shadow: 2px 2px 0px #fff;
+            margin-bottom: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ff0000;
+            transform: scale(1.2);
+        }
+
+        /* Bölüm Ayarları */
+        section {
+            padding: 150px 20px 80px 20px;
+            text-align: center;
+            min-height: 80vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h2 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #ff0000;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .brand-text {
+            color: #ff0000;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* Anasayfa (Hero Bölümü) */
+        #anasayfa {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=1470');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Ürün Kartları */
+        .urun-listesi {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .urun-kart {
+            background: #151515;
+            padding: 30px;
+            border-left: 5px solid #ff0000;
+            transition: 0.4s;
+        }
+
+        .urun-kart:hover {
+            background: #222;
+            transform: skewX(-2deg);
+        }
+
+        /* Form Tasarımı */
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #222;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 0;
+        }
+
+        button {
+            background: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 15px 50px;
+            cursor: pointer;
+            font-weight: 1000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Ürün Görsel Alanı Ayarları */
+        .urun-gorsel-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            /* Resimlerin yüksekliği */
+            overflow: hidden;
+            margin-bottom: 15px;
+            background: #000;
+        }
+
+        .urun-resim {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Resmi kutuya sığdırır */
+            transition: opacity 0.5s ease;
+            /* Geçiş yumuşaklığı */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Arka yüzü başlangıçta gizle */
+        .urun-resim.arka {
+            opacity: 0;
+        }
+
+        /* Karta gelince: Önü gizle, Arkayı göster */
+        .urun-kart:hover .urun-resim.on {
+            opacity: 0;
+        }
+
+        .urun-kart:hover .urun-resim.arka {
+            opacity: 1;
+        }
+
+        footer {
+            padding: 30px;
+            background: #000;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#anasayfa">Anasayfa</a></li>
+                <li><a href="#hakkimizda">Hakkımızda</a></li>
+                <li><a href="#urunler">Ürünler</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+            </ul>
+        </nav>
+
+        <div class="logo-group">
+            <div class="main-logo">IXZIR</div>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/gymhanltc?igsh=MTFuY2d2NHhxd2FzMQ%3D%3D&utm_source=qr"
+                    target="_blank"><i class="fab fa-instagram"></i></a>
+
+                <a href="https://tiktok.com/@gymhanltc" target="_blank"><i class="fab fa-tiktok"></i></a>
+
+                <a href="https://youtube.com/@tchblueedit" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <section id="anasayfa">
+        <h1>BORN TO CONQUER</h1>
+        <span class="brand-text">IXZIR GYM WEAR</span>
+    </section>
+
+    <section id="hakkimizda">
+        <div class="container">
+            <h2>HAKKIMIZDA</h2>
+            <p><strong>IXZIR GYM WEAR</strong>, sadece bir giyim markası değil, bir disiplin anlayışıdır. Agresif
+                tasarımlarımız ve en üst kalite kumaş teknolojimizle, antrenmanlarınızda sizi durdurulamaz kılıyoruz.
+            </p>
+        </div>
+    </section>
+
+    <section id="urunler">
+        <div class="container">
+            <h2>ÜRÜNLER</h2>
+            <div class="urun-listesi">
+                <div class="urun-kart">
+                    <div class="urun-gorsel-container">
+                        <img src="compp1.png" class="urun-resim on" alt="IXZIR OVERSIZE Front">
+                        <img src="compp2.png" class="urun-resim arka" alt="IXZIR OVERSIZE Back">
+                    </div>
+                    <h3>OVERSIZE T-SHIRT</h3>
+                    <p>IXZIR GYM WEAR imzalı, ağır pamuklu kumaş.</p>
+                </div>
+                <div class="urun-kart">
+                    <div class="urun-gorsel-container">
+                        <img src="comp1.png" class="urun-resim on" alt="IXZIR Compression Front">
+                        <img src="comp2.png" class="urun-resim arka" alt="IXZIR Compression Back">
+                    </div>
+                    <h3>COMPRESSION T-SHIRT</h3>
+                    <p>IXZIR GYM WEAR ile kan dolaşımını destekleyen teknoloji.</p>
+                </div>
+
+                <div class="urun-kart">
+                    <div class="urun-gorsel-container">
+                        <img src="compp1.png" class="urun-resim on" alt="IXZIR STRINGER Front">
+                        <img src="compp2.png" class="urun-resim arka" alt="IXZIR STRINGER Back">
+                    </div>
+                    <h3>STRINGER</h3>
+                    <p>IXZIR GYM WEAR kesimi ile kas hatlarını belli eden tasarım.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="iletisim">
+        <div class="container">
+            <h2>İLETİŞİM</h2>
+            <p><strong>IXZIR GYM WEAR</strong> ekibine katılmak veya sorularınız için yazın.</p>
+            <form class="contact-form">
+                <input type="text" placeholder="İSİM SOYİSİM">
+                <input type="email" placeholder="E-POSTA">
+                <textarea rows="5" placeholder="MESAJINIZ"></textarea>
+                <button type="button">SAVAŞA KATIL</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 IXZIR GYM WEAR | THE AGGRESSIVE PERFORMANCE</p>
+    </footer>
+
+</body>
+
+</html>

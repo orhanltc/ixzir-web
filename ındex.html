@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Günün Sözü Uygulaması</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            margin: 0;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+
+        button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background-color: #005a9e;
+        }
+
+        #soz {
+            font-style: italic;
+            color: #555;
+            min-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>🎯 Günün Motivasyonu</h2>
+        <p id="soz">Butona basarak bir söz seç!</p>
+        <button onclick="sozGetir()">Yeni Söz Getir</button>
+    </div>
+
+    <script>
+        const sozler = [
+            "osuruk kemiksiz kakadır evlat.",
+            "Başlamak için mükemmel olmana gerek yok, ama mükemmel olmak için başlamana gerek var.",
+            "Kod yazmak, kısırın amına koymayı öğrenmektir.",
+            "Hata yapmak, bir şeyler denediğinin kanıtıdır.",
+            "En iyi hata ayıklama yöntemi, hatayı hiç yapmamaktır ama imkansızdır!"
+        ];
+
+        function sozGetir() {
+            const rastgeleIndex = Math.floor(Math.random() * sozler.length);
+            document.getElementById('soz').innerText = sozler[rastgeleIndex];
+        }
+    </script>
+
+</body>
+
+</html>
